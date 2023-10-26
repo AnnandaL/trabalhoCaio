@@ -6,7 +6,6 @@ const port = 3000;
 //Use o body-parser para processar dados JSON nas solicitações POST e PUT
 app.use(bodyParser.json());
 
-//Dados de exemplo (substitua isso por um banco de dados real)
 const todos = [
     { id: 1, task: 'Fazer SkinCare'},
     { id: 2, task: 'Estudar Node.js'},
@@ -14,6 +13,15 @@ const todos = [
     { id: 4, task: 'Curso Shark Educa'},
 ];
 
+app.get('/', (req, res) => {
+    res.send('Olá, prossiga com /home')
+});
+
+app.get('/home', (req, res) => {
+    res.send('Qual caminho deseja seguir?')
+});
+
+//Rota GET para solicitar determina página
 app.get('/users', (req, res) => {
     res.json(todos)
 });
@@ -25,7 +33,7 @@ app.post('/users', (req, res) => {
     res.status(201).json(newTodo);
 });
 
-//Rota PUT para atualizar uma tarefaa pelo ID
+//Rota PUT para atualizar uma tarefa pelo ID
 app.put('/users/:id', (req, res) => {
     const idToUpdate = parseInt(req.params.id);
     const updatedTask = req.body;
@@ -38,10 +46,6 @@ app.put('/users/:id', (req, res) => {
     } else {
         res.status(404).json({ error: 'Tarefa não encontrada' });
     }
-});
-
-app.get('/home', (req, res) => {
-    res.send('Qual caminho deseja seguir? ');
 });
 
 //Rota DELETE para excluir uma tarefa pelo ID
