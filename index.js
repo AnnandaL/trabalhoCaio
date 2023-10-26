@@ -21,7 +21,7 @@ app.get('/home', (req, res) => {
     res.send('Qual caminho deseja seguir?')
 });
 
-//Rota GET para solicitar determina página
+//Rota GET para solicitar determinada página
 app.get('/users', (req, res) => {
     res.json(todos)
 });
